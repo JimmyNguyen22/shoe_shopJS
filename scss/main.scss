@@ -1,0 +1,9 @@
+/*
+folder base chứa các mục scss dùng chung tất cả các page của project *{}
+folder
+file _variable chứa tất cả biến và mixin
+_index.scss import tat ca
+style.scss import _index
+*/
+
+@import "./pages/index";

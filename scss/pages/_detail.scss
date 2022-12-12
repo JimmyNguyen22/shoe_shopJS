@@ -1,0 +1,269 @@
+.product {
+  background-color: $bg-white;
+  padding-bottom: 24px;
+  border-radius: 3px;
+  .product-img {
+    width: 480px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 220px;
+      transition: transform 0.3s;
+      cursor: pointer;
+      &:hover {
+        transform: scale(150%);
+      }
+    }
+  }
+
+  .product-desc {
+    width: 720px;
+    padding: 1.5rem;
+    h1 {
+      font-weight: $text-regular;
+      font-size: $text-3xl;
+      margin-bottom: 1.5rem;
+    }
+    .desc {
+      font-size: $text-xl;
+      font-weight: $text-regular;
+      line-height: 19.36px;
+      color: $text-black;
+    }
+
+    .item-price {
+      margin: 12px 0;
+      padding: 1.5rem 2rem;
+      background-color: $bg-gray-secondary;
+      .price-old {
+        color: $text-gray;
+        font-size: $text-l;
+        text-decoration: line-through;
+        margin-right: 10px;
+      }
+      .price-new {
+        font-size: $text-3xl;
+        color: $text-primary;
+        font-weight: $text-regular;
+      }
+    }
+
+    .select {
+      display: flex;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      gap: 24px;
+      h3 {
+        font-size: 1.6rem;
+        width: 110px;
+      }
+      #btn {
+        button {
+          font-size: $text-l;
+          overflow: visible;
+          height: 32px;
+          width: 80px;
+          cursor: pointer;
+          min-width: 5rem;
+          min-height: 2.125rem;
+          box-sizing: border-box;
+          margin: 0px 8px 8px 0px;
+          color: rgba(0, 0, 0, 0.8);
+          text-align: left;
+          border-radius: 2px;
+          border: 1px solid rgba(0, 0, 0, 0.09);
+          position: relative;
+          background: rgb(255, 255, 255);
+          outline: none;
+          word-break: break-word;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            border: 1px solid $bg-c1-primary;
+            color: $text-primary;
+          }
+        }
+      }
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 24px;
+      span {
+        font-size: $text-l;
+        width: 110px;
+      }
+
+      .quantity-btn {
+        .decline {
+          outline: none;
+          cursor: pointer;
+          border: 1px solid rgba(0, 0, 0, 0.09);
+          border-radius: 2px;
+          background: transparent;
+          width: 32px;
+          height: 32px;
+          font-size: $text-2xl;
+        }
+        .number {
+          width: 50px;
+          height: 32px;
+          border: 1px solid rgba(0, 0, 0, 0.09);
+          cursor: text;
+          font-size: $text-l;
+          text-align: center;
+          padding: 1px 2px;
+          outline: none;
+        }
+      }
+
+      h6 {
+        font-size: $text-l;
+      }
+    }
+
+    .addCart {
+      background: rgba(255, 87, 34, 0.1);
+      border: 1px solid $bg-c1-primary;
+      box-shadow: rgb(0 0 0 / 3%) 0px 1px 1px 0px;
+      color: $text-primary;
+      margin-right: 15px;
+      padding: 0px 1.2rem;
+      font-size: $text-l;
+      height: 48px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+      i {
+        font-size: $text-2xl;
+      }
+    }
+  }
+}
+
+.more-product {
+  margin: 0 -12px;
+  .product-title {
+    text-align: center;
+    font-size: $text-3xl;
+    margin: 24px 0;
+  }
+  .product-item {
+    display: block;
+    background-color: $bg-white;
+    margin-top: 10px;
+    position: relative;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 0.1px 2px 0 rgb(0 0 0 / 10%);
+    transition: transform 0.2s linear;
+    &:hover {
+      box-shadow: 0 2px 20px 0 rgb(0 0 0 / 5%);
+      transform: translateY(-2px);
+      border: 1px solid $bg-c1-primary;
+    }
+    .item-img {
+      padding-top: 100%;
+      background-size: cover;
+    }
+    .item-name {
+      font-size: $text-s;
+      margin: 10px;
+      line-height: 1.6rem;
+      height: 3.2rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    .item-price {
+      padding: 10px;
+      padding-top: 0;
+      .price-old {
+        font-size: $text-s;
+        text-decoration: line-through;
+        color: $text-gray;
+        margin-right: 4px;
+      }
+      .price-new {
+        font-size: $text-l;
+        color: $text-primary;
+      }
+    }
+    .item-action {
+      padding: 0 10px;
+      .item-rating {
+        margin-right: 4px;
+        color: $text-secondary;
+      }
+      .item-sold {
+        font-size: $text-s;
+      }
+    }
+    .item-location {
+      font-size: $text-s;
+      padding: 10px;
+      font-weight: $text-light;
+    }
+    .item-favourite {
+      position: absolute;
+      top: 10px;
+      left: -4px;
+      background-color: currentColor;
+      line-height: 1.6rem;
+      padding-right: 4px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      @include text($fs: $text-s, $fw: $text-semibold, $c: $bg-c1-primary);
+      &::before {
+        content: "";
+        position: absolute;
+        border-top: 3px solid currentColor;
+        border-left: 3px solid transparent;
+        left: 0;
+        bottom: -3px;
+        filter: brightness(60%);
+      }
+      i {
+        color: $text-white;
+      }
+      span {
+        color: $text-white;
+      }
+    }
+    .item-sale {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40px;
+      height: 36px;
+      color: rgba(255, 216, 64, 0.9);
+      background-color: currentColor;
+      text-align: center;
+      font-size: $text-s;
+      line-height: 1.5;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        border-width: 0 20px 5px;
+        border-style: solid;
+        border-color: transparent currentColor transparent currentColor;
+      }
+      .sale-percent {
+        color: $text-primary;
+      }
+      .sale-title {
+        color: $text-white;
+      }
+    }
+  }
+}

@@ -1,0 +1,290 @@
+* {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+//reponsive
+
+.grid {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.grid_full-width {
+  width: 100%;
+}
+
+.grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -6px;
+  margin-right: -6px;
+}
+
+.col-2 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 16.66666%;
+}
+
+.col-2-4 {
+  padding-left: 6px;
+  padding-right: 6px;
+  width: 20%;
+}
+
+.col-10 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 83.3334%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes growth {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+// modal
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  // display: flex;
+  animation: fadeIn linear 0.1s;
+  display: none;
+
+  .modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-body {
+    margin: auto;
+    animation: growth linear 0.1s;
+    position: relative;
+    z-index: 1;
+    .modal-inner {
+    }
+  }
+}
+
+// btn
+
+.btn {
+  min-width: 142px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  font-size: $text-m;
+  cursor: pointer;
+  background-color: $bg-white;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+.btn.btn-primary {
+  color: $text-white;
+  background-color: $bg-c1-primary;
+}
+
+.btn.btn-icon {
+  height: 32px;
+  font-size: $text-m;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  width: calc(50% - 8px);
+}
+
+// form
+
+.auth-form {
+  width: 500px;
+  background-color: $bg-white;
+  border-radius: 5px;
+  overflow: hidden;
+  .form-container {
+    padding: 32px;
+    .form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 8px 36px;
+      .form-title {
+        font-size: 2.2rem;
+        font-weight: $text-semibold;
+      }
+      .form-switch-btn {
+        font-size: 1.6rem;
+        color: $text-primary;
+        font-weight: $text-semibold;
+        cursor: pointer;
+      }
+    }
+    .form-body {
+      .form-group {
+        .form-control {
+          width: 100%;
+          height: 40px;
+          margin-bottom: 16px;
+          padding-left: 12px;
+          font-size: $text-m;
+          border: 1px solid $bg-gray;
+          outline: none;
+          &:focus {
+            border-color: #888;
+          }
+        }
+      }
+    }
+    .form-text {
+      .form-policy {
+        line-height: 1.6rem;
+        text-align: center;
+        padding: 0 8px;
+        @include text($text-s, $text-semibold, $text-black);
+        .policy-link {
+          color: $text-primary;
+        }
+      }
+
+      .form-help {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: $text-m;
+        .help-link:first-child {
+          color: $text-primary;
+          font-weight: $text-semibold;
+        }
+        .help-link:last-child {
+          opacity: 0.5;
+        }
+        .separate {
+          display: block;
+          border-left: 1px solid #eaeaea;
+          height: 22px;
+          margin: 0px 16px;
+        }
+      }
+    }
+    .form-btn {
+      margin-top: 80px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+  }
+
+  .form-social {
+    background-color: $bg-gray-secondary;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    .btn-icon {
+      i {
+        font-size: $text-2xl;
+        margin-right: 30px;
+      }
+    }
+    .social-fb {
+      background-color: #3a5a98;
+      color: $text-white;
+    }
+    .social-gg {
+      background-color: $bg-white;
+      color: $text-black;
+      i {
+        color: #4285f4;
+      }
+    }
+  }
+}
+
+#register {
+  display: none;
+}
+
+#login {
+  display: none;
+}
+
+// selection
+.select-input {
+  position: relative;
+  min-width: 200px;
+  border-radius: 3px;
+  background-color: $bg-white;
+  height: 32px;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover .select-list {
+    display: block;
+  }
+  .select-list {
+    position: absolute;
+    z-index: 1;
+    top: 103%;
+    left: 0;
+    right: 0;
+    border-radius: 3px;
+    background-color: $bg-white;
+    padding: 8px 16px;
+    display: none;
+  }
+}
+
+// pagination
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $text-xl;
+  color: $text-gray;
+  .pagination-item {
+    border-radius: 3px;
+    margin: 0 12px;
+    .pagination-link {
+      min-width: 40px;
+      height: 30px;
+      display: block;
+      text-align: center;
+      line-height: 30px;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+  .pagination-active {
+    background-color: $bg-c1-primary;
+    color: $text-white;
+  }
+}
