@@ -50,18 +50,66 @@ const renderProduct = (item) => {
 
     <div class="quantity">
         <span>Số Lượng</span>
-        <div class="quantity-btn">
-            <button class="decline">-</button>
-            <input type="text" value="1" class="number">
-            <button class="decline">+</button>
+        <div class="quantity-btn" style="display:flex;">
+          <button class="decline decrease">-</button>
+          <input type="text" value="1" class="number">
+          <button class="decline increase">+</button>
         </div>
         <h6>${item.quantity} sản phẩm có sẵn</h6>
     </div>
-    <button class="addCart">
+    <button class="addCart" >
         <i class='bx bx-cart-add'></i>
         Thêm vào giỏ hàng</button>
 </div>`;
   document.querySelector(".product").innerHTML = product;
+
+  const cartItem = document.querySelector(".cartItem");
+  const addCart = document.querySelector(".addCart");
+  const number = document.querySelector(".number");
+  const btns = document.querySelectorAll(".decline");
+  let count = 1;
+
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const value = e.currentTarget.classList;
+      if (value.contains("decrease")) {
+        count--;
+      } else if (value.contains("increase")) {
+        count++;
+      } else {
+        count = 1;
+      }
+      if (count < 1) {
+        count = 1;
+      }
+      number.value = count;
+    });
+  });
+
+  number.addEventListener("change", (event) => {
+    count = event.target.value;
+  });
+
+  addCart.addEventListener("click", () => {
+    cartItem.innerHTML = count;
+    updateCartBox(cartItem);
+    renderCart(item.image, item.name, item.price);
+  });
+
+  // set cart-box
+  const cartBox = document.querySelector(".cart-box");
+  const cartEmpty = document.querySelector(".cart-empty");
+  const cartFull = document.querySelector(".cart-full");
+  function updateCartBox(cartItem) {
+    if (cartItem.innerHTML < 1) {
+      cartEmpty.style.display = "block";
+      cartFull.style.display = "none";
+    } else {
+      cartEmpty.style.display = "none";
+      cartFull.style.display = "block";
+    }
+  }
+  updateCartBox(cartItem);
 };
 
 const renderBtn = (btns) => {
@@ -122,3 +170,19 @@ const renderMoreProduct = (arr) => {
 
   document.querySelector("#product-item").innerHTML = product;
 };
+
+function renderCart(image, name, price) {
+  let cartList = `
+  <div class="cart-item">
+  <img src=${image}
+      alt="">
+  <div class="cart-info">
+      <h5>${name}</h5>11
+      <span>₫${price}.000</span>
+  </div>
+</div>
+  `.join("");
+
+  document.querySelector(".cart-list").push(cartList).innerHTML;
+}
+
