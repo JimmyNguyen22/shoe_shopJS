@@ -3,5 +3,5 @@ function Product() {
   this.name = "";
   this.price = "";
   this.quantity = "";
-  this.img = "";
+  this.image = "";
 }

@@ -25,19 +25,25 @@ window.onload = function () {
   promise.catch(function (error) {
     console.log("loi", error);
   });
+
+  if (getLocalStorage("gioHang") !== undefined) {
+    // biến đổi value thành mảng lại
+    // gọi hàm để từ mảng tạo ra div
+    renderCart(JSON.parse(getLocalStorage("gioHang")));
+  }
 };
 
 const renderProduct = (item) => {
   let product = ` <div class="product-img">
-    <img src=${item.image} alt="">
+    <img src=${item.image} alt=${item.id} class="productImg" />
 </div>
 <div class="product-desc">
-    <h1>${item.name}</h1>
+    <h1 class="productName">${item.name}</h1>
     <p class="desc">${item.description}</p>
 
     <div class="item-price">
         <span class="price-old">1.200.000đ</span>
-        <span class="price-new">${item.price}.000đ</span>
+        <span class="price-new productPrice">${item.price}.000đ</span>
     </div>
 
     <div class="select">
@@ -68,6 +74,7 @@ const renderProduct = (item) => {
   const number = document.querySelector(".number");
   const btns = document.querySelectorAll(".decline");
   let count = 1;
+  let arrCart = [];
 
   btns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -90,10 +97,23 @@ const renderProduct = (item) => {
     count = event.target.value;
   });
 
+  // add to cart
   addCart.addEventListener("click", () => {
     cartItem.innerHTML = count;
     updateCartBox(cartItem);
-    renderCart(item.image, item.name, item.price);
+
+    let product = new Product();
+    let img = document.querySelector(".productImg");
+    product.name = document.querySelector(".productName").innerHTML;
+    product.image = img.src;
+    product.id = img.getAttribute("alt");
+    product.price = document.querySelector(".productPrice").innerHTML;
+    console.log(product.id);
+    arrCart.push(product);
+    renderCart(arrCart);
+    // save localStorage
+    let save = JSON.stringify(arrCart);
+    saveLocalStorage("gioHang", save);
   });
 
   // set cart-box
@@ -111,6 +131,37 @@ const renderProduct = (item) => {
   }
   updateCartBox(cartItem);
 };
+
+function renderCart(arrCart) {
+  let cartList = arrCart
+    .map((item) => {
+      return `
+    <div class="cart-item" >
+    <img src=${item.image}
+        alt=${item.id} />
+    <div class="cart-info">
+        <h5>${item.name}</h5>
+        <span>${item.price}</span>
+    </div>
+  </div>
+    `;
+    })
+    .join("");
+
+  document.querySelector(".cart-list").innerHTML = cartList;
+}
+
+function saveLocalStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function getLocalStorage(key) {
+  // kiểm tra xem local có key đó ko
+  if (localStorage.getItem(key)) {
+    return localStorage.getItem(key);
+  }
+  return undefined;
+}
 
 const renderBtn = (btns) => {
   let btn = btns
@@ -170,19 +221,3 @@ const renderMoreProduct = (arr) => {
 
   document.querySelector("#product-item").innerHTML = product;
 };
-
-function renderCart(image, name, price) {
-  let cartList = `
-  <div class="cart-item">
-  <img src=${image}
-      alt="">
-  <div class="cart-info">
-      <h5>${name}</h5>11
-      <span>₫${price}.000</span>
-  </div>
-</div>
-  `.join("");
-
-  document.querySelector(".cart-list").push(cartList).innerHTML;
-}
-
